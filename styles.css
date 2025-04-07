@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* This line is interesting- I set body to have 100% width,
+ * but by default this line is height: auto; so my body was
+ * not getting the height I wanted.
+ */
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#mainSection {
+    margin: 10px;
+    background-color: rgb(95, 95, 193);
+    flex: 3;
+}
+
+#futureWeather {
+    margin: 10px;
+    background-color: rgb(95, 95, 193);
+    flex: 1;
+}
