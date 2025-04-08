@@ -10,26 +10,96 @@
  */
 html {
     height: 100%;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
+    color: rgb(227, 225, 225);
+    background-color: #ABA1DA;
     margin: 0px;
-    padding: 0px;
+    padding: 80px;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
-    align-items: stretch;
 }
 
-#mainSection {
-    margin: 10px;
-    background-color: rgb(95, 95, 193);
-    flex: 3;
+.mainSection {
+    flex-direction: column;
+    display: flex;
+    flex: 6;
 }
 
-#futureWeather {
-    margin: 10px;
-    background-color: rgb(95, 95, 193);
+.background {
+    border-radius: 20px;
+    background-color: #253ac460;
+    min-height: fit-content;
+}
+
+.background>.top {
     flex: 1;
+    display: flex;
+    justify-content: space-around;                                                                                                                                                                                                                      
+    align-items: center;
+}
+
+.background>.top>img {     
+    max-width: 20%;
+    height: auto; 
+}
+
+.background>.top>.location {
+    line-height: 0rem;
+}
+
+.background>.top>.location>.city {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.background>.top>.location>.otherLocationDetails {                                                                                     
+    font-size: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.background>.top>.currentTemp {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.background>.bottom {
+    flex: 2;
+    /* ??? */
+    min-height: 200px;
+    display: flex;
+}
+
+.futureWeather {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    gap: clamp(10px, 2vw, 30px);
+    flex: 5;
+}
+
+.futureWeather>h2 {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.futureWeather>div {
+    border-radius: 20px;
+    background-color: #253ac460;
+    flex: 1 0 40px;
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        flex-direction: column;
+    }
+
+    .futureWeather {
+        margin-left: 0px;
+        margin-top: 30px;
+    }
 }
