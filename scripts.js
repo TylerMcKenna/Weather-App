@@ -1,6 +1,8 @@
+const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "October", "December"];
+
 async function callAPI(location, date1, date2) {
-    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date1}/${date2}?unitGroup=us&include=days&elements=conditions,datetime,temp,windgust,windspeed,description,resolvedAddress&key=FNWD53K7LC58RZX68HC4QJCNV`;
-    console.log(url);
+    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date1}/${date2}?unitGroup=us&include=days&elements=conditions,datetime,tempmax,tempmin,temp,windgust,windspeed,description,resolvedAddress&key=FNWD53K7LC58RZX68HC4QJCNV`;
     const response = await fetch(url, {mode: "cors"});
 
     if (response.status !== 200) {
@@ -14,9 +16,8 @@ async function callAPI(location, date1, date2) {
 // Want to let users choose dates but for now, not doing that
 async function getWeather(location) {
     // Today, at the start of the day
-    // This is neccessary to use Epoch time, which is cleaner.
-    // If we do not go to the start of the day we may have our 
-    // day round up to tomorrow.
+    // setHours(0,0,0,0) is neccessary to use Epoch time, which is easier to manipulate.
+    // If we do not reset the hours of the day, we end up getting the wrong day sometimes.
     const now = new Date();
     now.setHours(0, 0, 0, 0)
 
@@ -47,8 +48,22 @@ function updateWeatherPage(weather) {
     days.splice(0, 1);
 
     for (let i = 0; i < days.length; i++) {
-        const dayElement = document.querySelector(`.day${i}`);
-        console.log(dayElement);                              
+        const elementClasses = document.querySelector(`.day${i}`).className;
+        const currentDay = days[i];
+
+        const date = new Date(currentDay["datetime"]);
+        console.log(date);
+        const dayOfTheWeek = DAY_NAMES[date.getDay()];
+        const monthAndDay = `${MONTH_NAMES[date.getMonth()]} ${date.getUTCDate()}`
+        const high = `High: ${Math.round(currentDay["tempmax"])}°`;
+        const low = `Low: ${Math.round(currentDay["tempmin"])}°`;
+        
+        const properties = ["dayOfTheWeek", "monthAndDay", "high", "low"];
+        const values = [dayOfTheWeek, monthAndDay, high, low]
+        let j = 0;
+        for (const property of properties) {
+            document.querySelector(`.${elementClasses} .${property}`).textContent = values[j++];              
+        }
     }
 }
 
