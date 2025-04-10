@@ -28,12 +28,15 @@ body {
     flex-direction: column;
     display: flex;
     flex: 6;
+    align-items: stretch;
 }
 
 .background {
     border-radius: 20px;
     background-color: #253ac460;
     min-height: fit-content;
+    height: 100%;
+    min-height: 540px;
 }
 
 .background>.top {
@@ -66,8 +69,6 @@ body {
 
 .background>.bottom {
     flex: 2;
-    /* ??? */
-    min-height: 200px;
     display: flex;
 }
 
@@ -88,9 +89,44 @@ body {
 }
 
 .futureWeather>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     border-radius: 20px;
     background-color: #253ac460;
     flex: 1 0 40px;
+}
+
+.futureWeather .date {
+    line-height: 0rem;
+}
+
+.futureWeather .dayOfTheWeek {
+    font-size: clamp(0.8rem, 4vw, 1.3rem);
+}
+
+.futureWeather .monthAndDay {
+    font-size: clamp(0.8rem, 3vw, 1.1rem);
+}
+
+.futureWeather .temps {
+    line-height: 0rem;
+}
+
+.futureWeather img {
+    max-width: 8%;
+    height: auto; 
+}
+
+@media screen and (max-height: 800px) and (width > 1000px) {
+    .futureWeather .monthAndDay {
+        display: none;
+    }
+
+    .futureWeather .temps p {
+        display: inline;
+    }
 }
 
 @media screen and (max-width: 1000px) {
