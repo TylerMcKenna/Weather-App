@@ -44,6 +44,11 @@ function updateWeatherPage(weather) {
     document.querySelector(".city").textContent = address;
     document.querySelector(".otherLocationDetails").textContent = otherAddressInfo;
     document.querySelector(".currentTemp").textContent = `${Math.round(today["temp"])}°`;
+    document.querySelector(".todayHigh").textContent = `High: ${Math.round(today["tempmax"])}°`;
+    document.querySelector(".todayLow").textContent = `Low: ${Math.round(today["tempmin"])}°`;
+    document.querySelector(".weatherDescription").textContent = today["description"];
+
+    // could be a function
     const precipitationType = today["preciptype"]
     let icon = "sun";
     if (today["cloudcover"] >= 70) {
@@ -102,7 +107,7 @@ function updateWeatherPage(weather) {
 }
 
 async function main() {
-    const weather = await getWeather("Dallas");
+    const weather = await getWeather("Oklahoma City");
     updateWeatherPage(weather);
     console.log(Date(Date.now()).get);
 }

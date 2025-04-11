@@ -51,16 +51,14 @@ body {
     height: auto; 
 }
 
-.background>.top>.location {
-    line-height: 0rem;
-}
-
 .background>.top>.location>.city {
     font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 0px;
 }
 
 .background>.top>.location>.otherLocationDetails {                                                                                     
     font-size: clamp(0.75rem, 2vw, 1.5rem);
+    margin-top: 0px;
 }
 
 .background>.top>.currentTemp {
@@ -70,6 +68,25 @@ body {
 .background>.bottom {
     flex: 2;
     display: flex;
+    justify-content: space-around;
+}
+
+.background>.bottom>.temps {
+    font-size: clamp(1rem, 3vw, 2rem);
+    margin-right: 30px;
+}
+
+.background>.bottom>.temps>.todayHigh {
+    margin-bottom: 0;
+}
+
+.background>.bottom>.temps>.todayLow {
+    margin-top: 0;
+}
+
+.background>.bottom>.weatherDescription {
+    margin-left: 0px;
+    font-size: clamp(1rem, 3vw, 2rem);
 }
 
 .futureWeather {
@@ -111,6 +128,7 @@ body {
 }
 
 .futureWeather .temps {
+    font-size: clamp(0.8rem, 3vw, 1.3rem);
     line-height: 0rem;
 }
 
