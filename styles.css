@@ -33,7 +33,7 @@ body {
 
 .background {
     border-radius: 20px;
-    background-color: #253ac460;
+    background-color: rgb(99, 110, 181);
     min-height: fit-content;
     height: 100%;
     min-height: 540px;
@@ -94,7 +94,7 @@ body {
     justify-content: space-around;
     align-items: center;
     border-radius: 20px;
-    background-color: #253ac460;
+    background-color: rgb(99, 110, 181);
     flex: 1 0 40px;
 }
 
