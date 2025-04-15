@@ -3,7 +3,6 @@ const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "Ju
 
 async function callAPI(location, date1, date2) {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date1}/${date2}?unitGroup=us&include=days&elements=conditions,datetime,tempmax,tempmin,temp,windgust,windspeed,description,resolvedAddress,preciptype,cloudcover&key=FNWD53K7LC58RZX68HC4QJCNV`;
-    console.log(url);
     const response = await fetch(url, {mode: "cors"});
 
     if (response.status !== 200) {
@@ -28,7 +27,6 @@ async function getWeather(location) {
 
     try {    
         const weather = await callAPI(location, today, weekFromToday);
-        console.log(weather);
         return weather;
     } catch (error) {
         console.log(`Fetching weather with location "${location}", startDate "${today}", and endDate "${weekFromToday}" failed: \n\t ${error.message}`);
@@ -92,7 +90,6 @@ function updateWeatherPage(weather) {
 
         // Changing if we have precipitation
         const precipitationType = currentDay["preciptype"];
-        console.log(precipitationType);
         if (precipitationType !== null) {
             // if rain is somewhere in the string
             if (precipitationType.indexOf("rain") !== -1) {
@@ -106,10 +103,9 @@ function updateWeatherPage(weather) {
     }
 }
 
-async function main() {
-    const weather = await getWeather("Oklahoma City");
+async function main(city = "Oklahoma City") {
+    const weather = await getWeather(city);
     updateWeatherPage(weather);
-    console.log(Date(Date.now()).get);
 }
 
 main();
