@@ -1,5 +1,5 @@
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "October", "December"];
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 async function callAPI(location, date1, date2) {
     console.log(`http://localhost:3000/weather/${location}/${date1}/${date2}`);
@@ -29,7 +29,7 @@ async function getWeather(location) {
         const weather = await callAPI(location, today, weekFromToday);
         return weather;
     } catch (error) {
-        console.log(`Fetching weather with location "${location}", startDate "${today}", and endDate "${weekFromToday}" failed: \n\t ${error.message}`);
+        console.log(error);
     }
 }
 
@@ -60,7 +60,7 @@ function updateWeatherPage(weather) {
             icon = precipitationType;
         }
     }
-    document.querySelector(`.mainIcon`).src = `./images/${icon}.png`
+    document.querySelector(`.mainIcon`).src = `images/${icon}.png`
 
     // Remove today since we don't need it anymore
     days.splice(0, 1);
@@ -103,8 +103,8 @@ function updateWeatherPage(weather) {
     }
 }
 
-async function main(city = "Svalbard") {
-    const weather = await getWeather(city);
+async function main() {
+    const weather = await getWeather();
     updateWeatherPage(weather);
 }
 
