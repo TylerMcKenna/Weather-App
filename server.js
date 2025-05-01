@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -38,7 +39,7 @@ app.get("/weatherPage", (req, res) => {
 app.get("/weather/:location/:date1/:date2", async (req, res) => {
      try {
           const { location, date1, date2 } = req.params;
-          const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.session.city}/${date1}/${date2}?unitGroup=us&include=days&elements=conditions,datetime,tempmax,tempmin,temp,windgust,windspeed,description,resolvedAddress,preciptype,cloudcover&key=FNWD53K7LC58RZX68HC4QJCNV`;
+          const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.session.city}/${date1}/${date2}?unitGroup=us&include=days&elements=conditions,datetime,tempmax,tempmin,temp,windgust,windspeed,description,resolvedAddress,preciptype,cloudcover&key=${process.env.API_KEY}`;
           const requestContent = await fetch(url, {mode: "cors"});
           const json = await requestContent.json();
           res.send(json)
@@ -47,4 +48,7 @@ app.get("/weather/:location/:date1/:date2", async (req, res) => {
      }
 });
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!`)
+});
