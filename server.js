@@ -36,11 +36,11 @@ app.post("/weatherPage", async (req, res) => {
             const json = await requestContent.json();
             req.session.cityInfo = json; 
         }
+        res.redirect("/weatherPage");
     } catch (error) {
         // console.log(`Error Status: ${requestContent.status} \n Error: ${error}`);
         res.redirect("/");
     }
-    res.redirect("/weatherPage");
 })
 
 app.get("/weatherPage", (req, res) => {
