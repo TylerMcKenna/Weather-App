@@ -51,7 +51,7 @@ app.get("/weatherPage", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "weather.html"));
 });
 
-app.get("/cityInfo", (req, res) => {
+app.post("/cityInfo", (req, res) => {
     res.send(req.session.cityInfo);
 });
 

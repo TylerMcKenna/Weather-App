@@ -2,7 +2,7 @@ const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Frid
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 async function callAPI(location, date1, date2) {
-    const response = await fetch(`/cityInfo`);
+    const response = await fetch(`/cityInfo`, { method: post });
 
     if (response.status !== 200) {
         throw new Error(`Error Status: ${response.status}`);
